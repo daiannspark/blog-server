@@ -7,6 +7,7 @@ import cors from 'cors';
 import './utils/dotenv';
 import index from './routes/index';
 import category from './routes/category';
+import post from './routes/post';
 import defaultErrorHandler from './middlewares/defaultErrorHandler';
 const logger = require('./utils/logger')('server');
 
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(`/api/v${process.env.API_VERSION}/category`, category);
+app.use(`/api/v${process.env.API_VERSION}/post`, post);
 app.use(`/api/v${process.env.API_VERSION}`, index);
 
 app.use('/uploads', express.static('uploads'));

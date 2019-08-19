@@ -4,9 +4,10 @@ const logger = require('../utils/logger')('logController');
 
 const AddCategory = async (req, res) => {
   logger.log('info', 'addCategory: %j', req.body);
-  const { title } = req.body;
+  const { title, description } = req.body;
   const category = await CategoryModel.save({
-    title
+    title,
+    description
   });
   res.status(200).send(category);
 };
