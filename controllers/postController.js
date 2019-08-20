@@ -28,4 +28,17 @@ const getPostById = async (req, res) => {
   res.status(200).send(post);
 };
 
-export { AddPost, getPostById, getPosts };
+const updatePost = async (req, res) => {
+  logger.log('info', 'updatePost: %j', req.body);
+  const { title, message, image, categoryId } = req.body;
+  const updatedPost = await PostModel.updatePost(req.params['postId'], { title, message, image, categoryId });
+  res.status(200).send(updatedPost);
+};
+
+const deletePost = async (req, res) => {
+  logger.log('info', 'deletePost: %j', req.body);
+  const deletedPost = await PostModel.deletePost(req.params['postId']);
+  res.status(200).send(deletedPost);
+};
+
+export { AddPost, getPostById, getPosts, updatePost, deletePost };
