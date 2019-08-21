@@ -8,7 +8,9 @@ import category from './routes/category';
 import post from './routes/post';
 import user from './routes/user';
 import comment from './routes/comment';
+import auth from './routes/auth';
 import defaultErrorHandler from './middlewares/defaultErrorHandler';
+import authMiddleware from "./middlewares/authMiddleware";
 const logger = require('./utils/logger')('server');
 
 const app = express();
@@ -28,8 +30,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(`/api/v${process.env.API_VERSION}/category`, category);
 app.use(`/api/v${process.env.API_VERSION}/post`, post);
-app.use(`/api/v${process.env.API_VERSION}/user`, user);
+app.use(`/api/v${process.env.API_VERSION}/user`, authMiddleware, user);
 app.use(`/api/v${process.env.API_VERSION}/comment`, comment);
+app.use(`/api/v${process.env.API_VERSION}/auth`, auth);
 app.use(`/api/v${process.env.API_VERSION}`, index);
 
 app.use('/uploads', express.static('uploads'));

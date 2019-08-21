@@ -2,20 +2,6 @@ import * as UserModel from '../models/UserModel';
 
 const logger = require('../utils/logger')('logController');
 
-const AddUser = async (req, res) => {
-  logger.log('info', 'addUser: %j', req.body);
-  const { username, firstName, lastName, avatar, email, rehashedPassword } = req.body;
-  const user = await UserModel.save({
-    username,
-    firstName,
-    lastName,
-    avatar,
-    email,
-    rehashedPassword
-  });
-  res.status(200).send(user);
-};
-
 const getUsers = async (req, res) => {
   logger.log('info', 'getUsers: %j', req.body);
   const users = await UserModel.getUsers();
@@ -41,4 +27,4 @@ const deleteUser = async (req, res) => {
   res.status(200).send(deletedUser);
 };
 
-export { AddUser, getUserById, getUsers, updateUser, deleteUser };
+export { getUserById, getUsers, updateUser, deleteUser };

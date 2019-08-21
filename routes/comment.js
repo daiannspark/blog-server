@@ -1,6 +1,5 @@
 import * as commentController from '../controllers/commentController';
 import * as express from "express";
-import * as categoryController from "../controllers/categoryController";
 const router = express.Router();
 
 router.get('', commentController.getComments);
