@@ -5,11 +5,13 @@ const logger = require('../utils/logger')('logController');
 const AddPost = async (req, res) => {
   logger.log('info', 'addPost: %j', req.body);
   const { title, message, image, categoryId, createdAt, updatedAt } = req.body;
+  const userId = req.user.id;
   const post = await PostModel.save({
     title,
     message,
     image,
     categoryId,
+    userId,
     createdAt,
     updatedAt
   });

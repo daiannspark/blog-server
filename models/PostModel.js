@@ -7,6 +7,7 @@ const postSchema = new mongoose.Schema(
         message: { type: String, trim: true, required: true },
         image: { type: String, required: true},
         categoryId: { type: ObjectId, required: true},
+        userId: { type: ObjectId, required: true}
     },
     { timestamps: true }
 );
