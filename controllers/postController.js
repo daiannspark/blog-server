@@ -21,7 +21,13 @@ const AddPost = async (req, res) => {
 
 const getPosts = async (req, res) => {
   logger.log('info', 'getPosts: %j', req.body);
-  const posts = await PostModel.getPosts();
+
+  let filter = {};
+  if(req.query.categoryId) {
+    filter.categoryId = req.query.categoryId;
+  }
+
+  const posts = await PostModel.getPosts(filter);
   res.status(200).send(posts);
 };
 
