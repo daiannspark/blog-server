@@ -27,6 +27,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 app.use(`/api/v${process.env.API_VERSION}/category`, category);
 app.use(`/api/v${process.env.API_VERSION}/post`, post);

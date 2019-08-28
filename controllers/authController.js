@@ -19,7 +19,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   logger.log('debug', 'login: %j', req.body);
-  const user = await UserModel.getUserByName(req.body.username);
+  const user = await UserModel.getUserByEmail(req.body.email);
   if (user) {
     const isPasswordsEqual = await UserModel.comparePassword(
       req.body['password'],
