@@ -4,7 +4,7 @@ const logger = require('../utils/logger')('logController');
 
 const AddPost = async (req, res) => {
   const { file: { filename } } = req;
-  const image = `/public/images/${filename}`;
+  const image = `/images/${filename}`;
   const { title, message, categoryId, createdAt, updatedAt } = req.body;
   const userId = req.user.id;
   const post = await PostModel.save({
