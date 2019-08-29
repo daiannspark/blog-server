@@ -26,7 +26,7 @@ const UserModel = mongoose.model('User', userSchema);
 
 const save = async model => new UserModel(model).save();
 const getUserByEmail = async email => UserModel.findOne({ email });
-const getUserById = async _id => UserModel.findById({ _id });
+const getUserSelf = async _id => UserModel.findOne({_id});
 const getUsers = async _id => UserModel.find();
 const updateUser = async (_id, update) => UserModel.findOneAndUpdate({ _id }, update, { new : true });
 const deleteUser = async _id => UserModel.findOneAndDelete({ _id });
@@ -35,4 +35,4 @@ const comparePassword = async (userPassword, rehashedPassword) => {
     return bcrypt.compare(userPassword, rehashedPassword);
 };
 
-export { save, getUserByEmail, getUserById, getUsers, updateUser, deleteUser, comparePassword  };
+export { save, getUserByEmail, getUserSelf, getUsers, updateUser, deleteUser, comparePassword  };

@@ -4,25 +4,26 @@ const logger = require('../utils/logger')('logController');
 
 const AddComment = async (req, res) => {
   logger.log('info', 'addComment: %j', req.body);
-  const { userId, postId, message } = req.body;
+  const { postId, message } = req.body;
+  const userId = req.user.id;
   const comment = await CommentModel.save({
     userId,
     postId,
     message
   });
-  res.status(200).send(comment);
+  res.status(201).send(comment);
 };
 
 const getComments = async (req, res) => {
-  logger.log('info', 'getComments: %j', req.body);
-  const comments = await CommentModel.getComments();
-  res.status(200).send(comments);
-};
 
-const getCommentById = async (req, res) => {
-  logger.log('info', 'getCommentById: %j', req.body);
-  const comment = await CommentModel.getCommentById(req.params['commentId']);
-  res.status(200).send(comment);
+  let filter = {};
+  if(req.query.postId) {
+    filter.postId = req.query.postId;
+  }
+
+  logger.log('info', 'getComments: %j', req.body);
+  const comments = await CommentModel.getComments(filter);
+  res.status(200).send(comments);
 };
 
 const updateComment = async (req, res) => {
@@ -38,4 +39,4 @@ const deleteComment = async (req, res) => {
   res.status(200).send(deletedComment);
 };
 
-export { AddComment, getCommentById, getComments, updateComment, deleteComment };
+export { AddComment, getComments, updateComment, deleteComment };

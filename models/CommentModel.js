@@ -13,9 +13,8 @@ const commentSchema = new mongoose.Schema(
 const CommentModel = mongoose.model('Comment', commentSchema);
 
 const save = async model => new CommentModel(model).save();
-const getCommentById = async _id => CommentModel.findById({ _id });
-const getComments = async _id => CommentModel.find();
+const getComments = async filter => CommentModel.find(filter);
 const updateComment = async (_id, update) => CommentModel.findOneAndUpdate({ _id }, update, { new : true });
 const deleteComment = async _id => CommentModel.findOneAndDelete({ _id });
 
-export { save, getCommentById, getComments, updateComment, deleteComment };
+export { save, getComments, updateComment, deleteComment };

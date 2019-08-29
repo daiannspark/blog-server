@@ -8,9 +8,9 @@ const getUsers = async (req, res) => {
   res.status(200).send(users);
 };
 
-const getUserById = async (req, res) => {
+const getUserSelf = async (req, res) => {
   logger.log('info', 'getUserById: %j', req.body);
-  const user = await UserModel.getUserById(req.params['userId']);
+  const user = await UserModel.getUserSelf(req.user.id);
   res.status(200).send(user);
 };
 
@@ -27,4 +27,4 @@ const deleteUser = async (req, res) => {
   res.status(200).send(deletedUser);
 };
 
-export { getUserById, getUsers, updateUser, deleteUser };
+export { getUserSelf, getUsers, updateUser, deleteUser };
