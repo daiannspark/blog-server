@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/daiannspark/blog-server#readme",
   "dependencies": {
-    "bcrypt": "^2.0.1",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",
     "core-util-is": "^1.0.2",
